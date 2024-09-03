@@ -13,7 +13,7 @@ import { ReactElement } from 'react';
 import { drawerCloseWidth, drawerOpenWidth } from '..';
 import UserDropdown from './UserDropdown';
 import { useBreakpoints } from 'providers/BreakpointsProvider';
-import {useUser} from "components/context/context";
+import { useUser } from "components/context/context"; // Adjust path as needed
 
 const Topbar = ({
   open,
@@ -23,12 +23,10 @@ const Topbar = ({
   handleDrawerToggle: () => void;
 }): ReactElement => {
   const { down } = useBreakpoints();
-
   const isMobileScreen = down('sm');
-  const {username} = useUser();
+  const { username } = useUser(); // Consume context
 
   return (
-    
     <AppBar
       position="fixed"
       sx={{
@@ -42,7 +40,6 @@ const Topbar = ({
         paddingRight: '0 !important',
       }}
     >
-      {/* {username} */}
       <Toolbar
         component={Stack}
         direction="row"
@@ -97,9 +94,9 @@ const Topbar = ({
           mr={3.75}
           flex="1 1 20%"
         >
-          
-          <Typography variant="h6" textAlign="center" color="text.secondary">Welcome {username}</Typography>
-          
+          <Typography variant="h6" textAlign="center" color="text.secondary">
+            Welcome {username}
+          </Typography>
           <UserDropdown />
         </Stack>
       </Toolbar>

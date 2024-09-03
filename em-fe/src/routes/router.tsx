@@ -18,9 +18,10 @@ const SignUp = lazy(() => import("pages/authentication/SignUp"));
 const MyProfile = lazy(() => import("pages/profile/MyProfile"));
 const UpdateProfile = lazy(() => import("pages/profile/UpdateProfile"));
 const ChangePassword = lazy(() => import("pages/profile/ChangePassword"));
-const ListUsers = lazy(()=> import("pages/projects_listing/user_data"))
-
-
+const ListUsers = lazy(() => import("pages/projects_listing/user_data"));
+const AddProjects = lazy(() => import("pages/projects_listing/add_projects"));
+// import AddProjects from "pages/projects_listing/add_projects";
+const UpdateProjects = lazy(() => import("pages/projects_listing/update_projects"));
 const routes: RouteObject[] = [
   {
     element: (
@@ -72,6 +73,21 @@ const routes: RouteObject[] = [
                     <ListUsers />
                   </Suspense>
                 ),
+              },
+              {
+                path: "/projects/add_projects",
+                element: (
+                  <Suspense fallback={<Splash />}>
+                    <AddProjects />
+                  </Suspense>
+                ),
+              },
+              {
+                path:"/projects/update_projects/:projectId",
+                element: 
+                  <Suspense fallback={<Splash />}>
+                    <UpdateProjects/>
+                  </Suspense>
               },
             ],
           },

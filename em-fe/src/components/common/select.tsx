@@ -11,11 +11,11 @@ interface SelectFieldProps {
   label: string;
   name: string;
   placeholder: string;
-  value: string | number;
+  value?: string | number;
   options: Option[];
   register: ReturnType<UseFormRegister<any>>;
   error?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface DynamicSelectProps {

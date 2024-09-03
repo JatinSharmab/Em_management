@@ -6,17 +6,17 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import BreakpointsProvider from 'providers/BreakpointsProvider.tsx';
 import router from 'routes/router';
 import './index.css';
-import {UserProvider} from "components/context/context" 
+import { UserProvider } from 'components/context/context';  // Ensure this path is correct
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>`
+  <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <UserProvider>
-      <BreakpointsProvider>
-        <CssBaseline />
-        <RouterProvider router={router} />
-      </BreakpointsProvider>
+      <UserProvider>
+        <BreakpointsProvider>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </BreakpointsProvider>
       </UserProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

@@ -57,7 +57,7 @@ const Login = (): ReactElement => {
 
       if (response.status === 200) {
         console.log("Login successful", result);
-        setUsername(result.user.name);
+        // setUsername(result.user.name);
         localStorage.setItem("Token", result.jwt);
         navigate("/profile");
       } else {

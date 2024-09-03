@@ -12,31 +12,34 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import { useState, useEffect, ReactElement,useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, ReactElement, useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import axiosInstance from "axiosConfig";
 
 import { rootPaths, pagesRoutes } from "routes/paths";
 import Image from "components/base/Image";
 import logoWithText from "/Logo-with-text.png";
 import MyButton from "components/common/button";
-import {useUser} from "components/context/context";
+import { useUser } from "components/context/context";
 import useAxios from "axiosConfig";
-
 
 const UserProfile = (): ReactElement => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<any>({});
   const axiosInstance = useAxios();
-  const {username} = useUser();
+  const { username } = useUser();
 
   useEffect(() => {
     getUserProfileData();
   }, []);
 
+  const ToMyProjects = () => {
+    navigate("/projects");
+  };
+
   const getUserProfileData = async () => {
     try {
-      const response = await axiosInstance.get('/myprofile/');
+      const response = await axiosInstance.get("/myprofile/");
       const result = await response.data;
       console.log(result.user);
 
@@ -63,7 +66,6 @@ const UserProfile = (): ReactElement => {
         <Link href={rootPaths.homeRoot}>
           <Image src={logoWithText} alt="logo with text" height={60} />
         </Link>
-
       </Box>
       <Paper
         sx={{
@@ -78,7 +80,7 @@ const UserProfile = (): ReactElement => {
           <Box display="flex" justifyContent="center" mb={3}>
             <Avatar src="" sx={{ width: 100, height: 100 }} />
           </Box>
-          
+
           <TableContainer>
             <Table>
               <TableBody>
@@ -117,8 +119,13 @@ const UserProfile = (): ReactElement => {
               </TableBody>
             </Table>
           </TableContainer>
-          
-          <Box justifyContent={"space-between"} marginLeft={100} display={"flex"} marginRight={100}>
+
+          <Box
+            justifyContent={"space-between"}
+            marginLeft={100}
+            display={"flex"}
+            marginRight={100}
+          >
             {/* <Button
               type="submit"
               sx={{
@@ -132,7 +139,7 @@ const UserProfile = (): ReactElement => {
             <Box
               sx={{
                 mx: "auto",
-                fontWeight: "fontWeightRegular",                                                                               
+                fontWeight: "fontWeightRegular",
               }}
             >
               <MyButton
@@ -143,9 +150,9 @@ const UserProfile = (): ReactElement => {
             </Box>
             <Box
               sx={{
-                mx: 'auto',
-                marginX:'120px',
-                fontWeight: 'fontWeightRegular',
+                mx: "auto",
+                marginX: "120px",
+                fontWeight: "fontWeightRegular",
               }}
             >
               <MyButton
@@ -154,7 +161,13 @@ const UserProfile = (): ReactElement => {
                 onClick={ToChangePs}
               />
             </Box>
-
+            <Box>
+              <MyButton
+                type="submit"
+                text="My Projects"
+                onClick={ToMyProjects}
+              />
+            </Box>
             {/* <Button 
             type="submit"
             sx={{
@@ -163,9 +176,9 @@ const UserProfile = (): ReactElement => {
               fontWeight: 'fontWeightRegular',
             }}
             onClick={ToChangePs}
-          >
-            Change Password
-          </Button> */}
+            // >
+              Change Password
+            </Button> */}
           </Box>
         </Stack>
       </Paper>

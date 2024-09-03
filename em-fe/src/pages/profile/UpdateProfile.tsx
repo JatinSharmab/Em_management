@@ -113,15 +113,7 @@ const UpdateProfile = (): ReactElement => {
       console.error("Error fetching profile data:", error.message);
     }
   };
-  // const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       if (e.target) setProfilePicture(e.target.result as string);
-  //     };
-  //     reader.readAsDataURL(event.target.files[0]);
-  //   }
-  // };
+  
 
   const onSubmitProfileUpdate = async (data: any) => {
     try {
@@ -250,36 +242,7 @@ const UpdateProfile = (): ReactElement => {
                 errors.firstname ? String(errors.firstname.message) : ""
               }
             />
-            {/* <MyInput
-              label="First Name"
-              placeholder="Enter Your First Name"
-              type="text"
-              name="firstname"
-              value={userData.firstname}
-              register={register}
-              onChange={(e) =>
-                setUserData({ ...userData, firstname: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px", // Adjust padding if needed
-                },
-
-                borderRadius: 2,
-                minWidth: "100%", // Ensure the TextField is not too small
-                marginBottom: "7px", // Ensure appropriate spacing between fields
-              }}
-            /> */}
+         
             <TextField
               label="Last Name"
               type="text"
@@ -312,35 +275,7 @@ const UpdateProfile = (): ReactElement => {
                 errors.lastname ? String(errors.lastname.message) : ""
               }
             />
-            {/* <MyInput
-              label="Last Name"
-              placeholder="Enter Your Last Name"
-              type="text"
-              name="lastname"
-              value={userData.lastname}
-              register={register}
-              onChange={(e) =>
-                setUserData({ ...userData, lastname: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                minWidth: "100%",
-                marginBottom: "7px",
-              }}
-            /> */}
+       
             <TextField
               label="Email"
               type="text"
@@ -377,36 +312,7 @@ const UpdateProfile = (): ReactElement => {
               error={!!errors.email}
               helperText={errors.email ? String(errors.email.message) : ""}
             />
-            {/* <MyInput
-              label="Email"
-              placeholder="Enter Your Email"
-              type="text"
-              name="email"
-              value={userData.email}
-              register={register}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px", // Adjust padding if needed
-                },
-
-                borderRadius: 2,
-                minWidth: "100%", // Ensure the TextField is not too small
-                marginBottom: "7px", // Ensure appropriate spacing between fields
-              }}
-            /> */}
+     
 
             <TextField
               label="Mobile"
@@ -443,70 +349,7 @@ const UpdateProfile = (): ReactElement => {
               error={!!errors.mobile}
               helperText={errors.mobile ? String(errors.mobile.message) : ""}
             />
-            {/* <MyInput
-              label="Mobile"
-              placeholder="Enter Your Mobile"
-              type="string"
-              name="mobile"
-              value={userData.mobile}
-              register={register}
-              onChange={(e) =>
-                setUserData({ ...userData, mobile: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px", // Adjust padding if needed
-                },
-
-                borderRadius: 2,
-                minWidth: "100%", // Ensure the TextField is not too small
-                marginBottom: "7px", // Ensure appropriate spacing between fields
-              }}
-            /> */}
-
-            {/* <TextField
-              label="Gender"
-              select
-              placeholder="Enter Gender"
-              value={userData.gender || " "} // Use value to make it controlled
-              {...register("gender", { required: "Gender is required" })}
-              onChange={(e) =>
-                setUserData({ ...userData, gender: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                width: "100%",
-                marginBottom: "16px",
-              }}
-              error={!!errors.gender}
-              helperText={errors.gender ? String(errors.gender.message) : ""}
-            >
-              <MenuItem value="Male">Male</MenuItem>
-              <MenuItem value="Female">Female</MenuItem>
-            </TextField> */}
+          
             <DynamicSelect
               selectFields={[
                 {
@@ -529,98 +372,7 @@ const UpdateProfile = (): ReactElement => {
               ]}
             />
 
-            {/*             
-            //       label: 'Gender',
-      // name: 'gender',
-      // placeholder: 'Enter Gender',
-      // value: userData.gender || ' ',
-      // options: [
-      //   { value: 'Male', label: 'Male' },
-      //   { value: 'Female', label: 'Female' },
-      // ],
-      // register: register('gender', { required: 'Gender is required' }),
-      // error: errors.gender ? String(errors.gender.message) : '',
-      // onChange: handleChange, */}
-            {/* <TextField
-              label="Country"
-              select
-              // placeholder="Enter Country"
-              value={userData.country || ""}
-              {...register("country", { required: "Country is required" })}
-              onChange={(e) =>
-                setUserData({ ...userData, country: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                width: "100%",
-                marginBottom: "16px",
-              }}
-              error={!!errors.country}
-              helperText={errors.country ? String(errors.country.message) : ""}
-            >
-              {...countries.map((country) => (
-                <MenuItem key={country.country_id} value={country.country_name}>
-                  {/* {JSON.stringify(country.country_id)} */}
-            {/* {country.country_name} */}
-            {/* </MenuItem>
-              ))}
-            </TextField> */}
-            
-
-            {/* <TextField id="select" label="Age" value="20" select>
-              <MenuItem value="10">Ten</MenuItem>
-              <MenuItem value="20">Twenty</MenuItem>
-            </TextField> */}
-            {/* {JSON.stringify(userData.state)} */}
-            {/* <TextField
-              label="State"
-              select
-              placeholder="Enter State"
-              value={userData.state || ""}
-              {...register("state", { required: "State is required" })}
-              onChange={(e) =>
-                setUserData({ ...userData, state: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                width: "100%",
-                marginBottom: "16px",
-              }}
-              error={!!errors.state}
-              helperText={errors.state ? String(errors.state.message) : ""}
-            >
-              {states.map((state) => (
-                <MenuItem key={state.state_id} value={state.state_name}>
-                  {state.state_name}
-                </MenuItem>
-              ))}
-            </TextField> */}
+    
             <CountrySelect
         value={userData.country||""}
         onChange={(e) => setUserData({ ...userData, country: e.target.value, state: "", city: "" })}
@@ -642,57 +394,7 @@ const UpdateProfile = (): ReactElement => {
         register={register}
         error={errors.city ? String(errors.city.message) : ""}
       />
-            {/* <TextField
-              label="City"
-              select
-              placeholder="Enter City"
-              value={userData.city || ""} // Use value to make it controlled
-              {...register("city", { required: "City is required" })}
-              onChange={(e) =>
-                setUserData({ ...userData, city: e.target.value })
-              }
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                width: "100%",
-                marginBottom: "16px",
-              }}
-              error={!!errors.city}
-              helperText={errors.city ? String(errors.city.message) : ""}
-            >
-              {cities.map((city) => (
-                <MenuItem key={city.city_id} value={city.city_name}>
-                  {city.city_name}
-                </MenuItem>
-              ))}
-            </TextField> */}
-
-            {/* <Divider sx={{ mt: 3, mb: 4 }} /> */}
-            {/* <Button
-              variant="contained"
-              size="large"
-              sx={{
-                fontWeight: "fontWeightRegular",
-                maxWidth: "300px",
-                width: "100%",
-                mx: "auto",
-              }}
-              type="submit"
-            >
-              Update Profile
-            </Button> */}
+          
             <Box
               sx={{
                 fontWeight: "fontWeightRegular",

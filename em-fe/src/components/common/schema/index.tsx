@@ -47,7 +47,57 @@ export const signUpSchema = z.object({
     .string()
     .min(1,"Please enter your Passworddd"),
   })
+  export const AddProjSchema = z.object({
 
+    project_name: z
+      .string()
+      .min(1, "Please enter Project Name."),
+    project_technology: z
+      .string()
+      .min(1, "Please enter the technology"),
+      project_status: z
+      .string()
+      .min(1, "Please enter the status of project."),
+      project_start_date: z
+      .string()
+      .min(1, "Please enter Starting date of Project."),
+
+      project_deadline_date: z
+      .string()
+      .min(1, "Please enter Ending date of project."),
+
+      project_lead: z
+      .string()
+      .min(1, "Please enter Name of Project Lead."),
+
+      project_manager: z
+      .string()
+      .min(1, "Please enter name of Project Manager."),
+
+      project_client: z
+      .string()
+      .min(1, "Please enter name of Project Client."),
+
+      project_management_tool: z
+      .string()
+      .min(1, "Please enter project management tool."),
+
+      project_management_tool_url: z
+      .string()
+      .min(1, "Please enter projet management tool URL."),
+
+      project_repo_tool: z
+      .string()
+      .min(1, "Please enter the Projet Repo Tool."),
+      project_repo_url: z
+      .string()
+      .min(1, "Please enter Project Repo URL."),
+
+      description: z
+      .string()
+      .min(1, "Enter Description of Project"),
+
+  });
 
   export const editProfileSchema=z.object({
     

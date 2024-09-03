@@ -1,5 +1,4 @@
-
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 interface UserContextType {
   username: string;
@@ -21,7 +20,15 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [username, setUsername] = useState<string>('');
+  // Initialize username from localStorage
+  const [username, setUsername] = useState<string>(() => {
+    return localStorage.getItem('username') || '';
+  });
+
+  // Persist username to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('username', username);
+  }, [username]);
 
   return (
     <UserContext.Provider value={{ username, setUsername }}>

@@ -5,9 +5,10 @@ interface ButtonProps {
   text: string;
   onClick?: () => void; 
   type: 'submit'; 
+  sx?:any;
 }
 
-const MyButton: React.FC<ButtonProps> = ({ type, text, onClick }) => {
+const MyButton: React.FC<ButtonProps> = ({ type, text, onClick,sx }) => {
   return (
     <Button
       // sx={{
@@ -16,8 +17,11 @@ const MyButton: React.FC<ButtonProps> = ({ type, text, onClick }) => {
       //   fontWeight: "fontWeightRegular",
       // }}
       // variant="text"
+      
+      sx={sx}
       onClick={onClick}
       type={type}
+      
     >
       {text}
     </Button>

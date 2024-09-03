@@ -24,7 +24,7 @@ import MyButton from "components/common/button";
 import MyInput from "components/common/myInput";
 import {signUpSchema} from "components/common/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+ 
 const SignUp = (): ReactElement => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -220,65 +220,6 @@ const SignUp = (): ReactElement => {
             <Typography color="error" variant="body2" marginLeft={3}>
               {errors.email ? String(errors.email.message) : ""}
             </Typography>
-            {/* <TextField
-              label="Password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter Password"
-              {...register("password", {
-                required: "Password is required",
-                pattern: {
-                  value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{6,}$/,
-                  message:
-                    "Password must be at least 6 characters long and contain at least one letter and one number.",
-                },
-              })}
-              sx={{
-                ".MuiFilledInput-root": {
-                  bgcolor: "grey.A100",
-                  ":hover": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus": {
-                    bgcolor: "background.default",
-                  },
-                  ":focus-within": {
-                    bgcolor: "background.default",
-                  },
-                  padding: "16px",
-                },
-                borderRadius: 2,
-                minWidth: "100%", 
-                marginBottom: "16px", 
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      size="small"
-                      edge="end"
-                      sx={{
-                        mr: 2,
-                      }}
-                    >
-                      {showPassword ? (
-                        <IconifyIcon
-                          icon="el:eye-open"
-                          color="text.secondary"
-                        />
-                      ) : (
-                        <IconifyIcon icon="el:eye-close" color="text.primary" />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              error={!!errors.password}
-              helperText={
-                errors.password ? String(errors.password.message) : ""
-              }
-            /> */}
             <MyInput
               label="Password"
               placeholder="Enter Password"

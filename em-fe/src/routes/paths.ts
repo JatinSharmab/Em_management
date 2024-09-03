@@ -19,5 +19,6 @@ export const pagesRoutes = {
   updateProfile: `/${rootPaths.profileRoot}/update`,
   ChangePasswords: `/${rootPaths.profileRoot}/ChangePassword`,
   ListUsers: `/${rootPaths.projectRoot}/ListUsers`,
-
+  AddProjects:`/${rootPaths.projectRoot}/add_projects`,
+  UpdateProjects: `/${rootPaths.projectRoot}/update_projects`
 };

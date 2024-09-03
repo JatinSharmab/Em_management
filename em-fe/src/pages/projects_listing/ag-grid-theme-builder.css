@@ -5,7 +5,10 @@
  */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM%20Plex%20Sans:wght@400;500&display=swap');
-
+.ag-theme-alpine .custom-font-size {
+	font-size: 50px; /* Adjust the font size as needed */
+  }
+  
 
 :where(.ag-root-wrapper, .ag-measurement-container, .ag-apply-theme-variables, .ag-popup) {
 	--ag-background-color: var(--ag-inherited-background-color, #1f2836);

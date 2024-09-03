@@ -1,133 +1,237 @@
+import { useState, useEffect, useRef } from "react";
+import AgGrid from "components/common/AgGrid";
+import { ColDef } from "@ag-grid-community/core";
+import { ModuleRegistry } from "@ag-grid-community/core";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
-// Theme
-import { ColDef, ModuleRegistry } from "@ag-grid-community/core";
+// import { log } from "console";
+import MyButton from "components/common/button";
+import { useNavigate } from "react-router-dom";
+import { fontGrid } from "@mui/material/styles/cssUtils";
+import DeleteButton from "./delete_project";
 import { AgGridReact } from "@ag-grid-community/react";
-// React Grid Logic
-// import 'ag-grid-community/styles/ag-grid.css';
-
-// Core CSS
-import "./ag-grid-theme-builder.css";
-import React, { useState } from "react";
-// import { createRoot } from 'react-dom/client';
-
+import UpdateProjects from "./update_projects";
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
-// Row Data Interface
 interface IRow {
-  make: string;
-  model: string;
-  price: number;
-  electric: boolean;
+  project_id: string;
+  technology: string;
+  project_name: string;
+  status: string;
 }
 
-// Create new GridExample component
 const ListUsers = () => {
-  // Row Data: The data to be displayed.
-  const [rowData, setRowData] = useState<IRow[]>([
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-    { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-    { make: "Fiat", model: "500", price: 15774, electric: false },
-    { make: "Nissan", model: "Juke", price: 20675, electric: false },
-  ]);
+  const gridRef = useRef<AgGridReact>(null);
+  const [rowData, setRowData] = useState<IRow[]>([]);
+  const navigate = useNavigate();
 
-  // Column Definitions: Defines & controls grid columns
-  const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
-    { field: "make", filter: true, floatingFilter: true },
-    { field: "model", filter: true, floatingFilter: true },
-    { field: "price", filter: true, floatingFilter: true },
-    { field: "electric", filter: true, floatingFilter: true },
-  ]);
-
-  const defaultColDef: ColDef = {
-    flex: 1,
+  function isForceRefreshSelected() {
+    return (document.querySelector("#forceRefresh") as HTMLInputElement)
+      .checked;
+  }
+  const handleEdit = (projectId: number) => {
+    navigate(`/projects/update_projects/${projectId}`);
+    console.log(projectId)
   };
 
-  // Container: Defines the grid's theme & dimensions.
+  function isSuppressFlashSelected() {
+    return (document.querySelector("#suppressFlash") as HTMLInputElement)
+      .checked;
+  }
+
+  const test = (id: any) => {
+    console.log("in test function");
+    const newData = rowData.filter((project) => project.project_id != id);
+    setRowData(newData);
+    gridRef.current?.api.refreshCells({
+      force: isForceRefreshSelected(),
+      suppressFlash: isSuppressFlashSelected(),
+    });
+  };
+
+  // const handleEdit = () => {
+  //   console.log("Hey delete is pressed");
+  // };
+
+  const handleDelete = () => {};
+
+  const colDefs: ColDef<any>[] = [
+    {
+      field: "project_technology",
+      headerName: "Technology",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_name",
+      headerName: "Project Name",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_status",
+      headerName: "Status",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+
+    {
+      field: "project_lead",
+      headerName: "Project Lead",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_manager",
+      headerName: "Project Manager",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_client",
+      headerName: "Project Client",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_start_date",
+      headerName: "Start Date",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_deadline_date",
+      headerName: "Project Deadline",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_management_tool",
+      headerName: "Management Tool",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_management_tool_url",
+      headerName: "Management Tool Link",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+    {
+      field: "project_repo_tool",
+      headerName: "Repository Tool",
+      filter: true,
+      floatingFilter: true,
+      minWidth: 230,
+    },
+
+    {
+      headerName: "Actions",
+      minWidth: 230,
+
+      cellRenderer: (params: any) => (
+        <div>
+          <button
+            style={{
+              padding: 6,
+              margin: 5,
+              background: "#73CABE",
+              color: "black",
+            }}
+            onClick={() => handleEdit(params.data.project_id)} 
+          >
+            Edit
+          </button>
+
+          {/* <button  ><UpdateProjects projectId={params.data.project_id}/> Edit</button> */}
+          <DeleteButton
+            projectId={params.data.project_id}
+            fun={test.bind(this)}
+          />
+        </div>
+      ),
+    },
+  ];
+
+  const getToken = () => {
+    return localStorage.getItem("Token");
+  };
+
+  const handleNavigateToAdd = () => {
+    navigate("./add_projects");
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = getToken();
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "http://localhost/em_management/api/v1/projects/",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+
+        if (result.status === 200) {
+          const projectData: any = result?.data;
+          const project_id = result.data[0].project_id;
+          console.log(projectData);
+          setRowData(projectData[0]);
+        } else {
+          console.error("Unexpected data format:", result);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div
-      id={"myGrid"}
-      className={"ag-theme-custom"}
-      style={{ width: "100%", height: "80%" }}
-    >
-      <AgGridReact
+    <>
+      <MyButton
+        // sx={}
+        sx={{
+          marginLeft: "1450px",
+          marginBottom: "15px",
+        }}
+        type="submit"
+        text="Add Projects"
+        onClick={handleNavigateToAdd}
+      />
+      <AgGrid
         rowData={rowData}
         columnDefs={colDefs}
-        defaultColDef={defaultColDef}
         pagination={true}
         paginationPageSize={10}
-        paginationPageSizeSelector={[5,10,15,20,50,100]}
+        paginationPageSizeSelector={[10, 20, 50]}
       />
-    </div>
+    </>
   );
 };
 
-// Render GridExample
 export default ListUsers;

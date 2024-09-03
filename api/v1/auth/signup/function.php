@@ -26,6 +26,41 @@ function storeUser($userInput)
     if (empty(trim($name))) {
         return error422('Enter Your Name');
     }
+    // INSERT INTO `em_projects` (`project_id`, `project_user_id`, `project_name`,
+    //  `project_technology`, `project_status`, `project_created_at`, `project_deleted_at`
+    //  , `project_updated_at`, `project_start_date`, `project_deadline_date`, 
+    //  `project_lead`, `project_manager`, `project_client`, `project_management_tool`, 
+    //  `project_management_tool_url`, `project_repo_tool`, `project_repo_url`, 
+    //  `description`) VALUES 
+
+    // $project_name = mysqli_real_escape_string($conn, $userInput['project_name']);
+   
+
+    // $project_technology = mysqli_real_escape_string($conn, $userInput['project_technology']);
+
+
+    // $project_status = mysqli_real_escape_string($conn, $userInput['project_status']);
+
+    // // $project_created_at = mysqli_real_escape_string($conn, $userInput['project_created_at']);
+
+    // $project_start_date = mysqli_real_escape_string($conn, $userInput['project_start_date']);
+
+    // $project_deadline_date = mysqli_real_escape_string($conn, $userInput['project_deadline_date']);
+
+    // $project_lead = mysqli_real_escape_string($conn, $userInput['project_lead']);
+
+    // $project_manager = mysqli_real_escape_string($conn, $userInput['project_manager']);
+
+    // $project_client = mysqli_real_escape_string($conn, $userInput['project_client']);
+
+    // $project_management_tool = mysqli_real_escape_string($conn, $userInput['project_management_tool']);
+
+    // $project_management_tool_url = mysqli_real_escape_string($conn, $userInput['project_management_tool_url']);
+
+    // $project_repo_tool = mysqli_real_escape_string($conn, $userInput['project_repo_tool']);
+    // $project_repo_url = mysqli_real_escape_string($conn, $userInput['project_repo_url']);
+    // $description = mysqli_real_escape_string($conn, $userInput['description']);
+    
     else if (empty(trim($lastname))) {
         return error422('Enter Your lastname');
     } else if (empty(trim($email))) {
